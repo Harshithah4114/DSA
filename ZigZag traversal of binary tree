@@ -1,0 +1,52 @@
+class Solution {
+    public static void binaryTreeZigZagTraversal(Node root) {
+        Queue <Node> queue = new LinkedList <> ();
+        Stack <Node> st = new Stack <>();
+        queue.add(root);
+        int level =0;
+        while(queue.size()>0){
+            int size = queue.size();
+            level++;
+            for(int i=0; i<size; i++){
+                //if levelis even
+                if(level%2==0){
+                    //rwa
+                    //remove from both places
+                    Node remSt =st.pop();
+                    Node remQue = queue.poll();
+                    
+                    //work
+                    System.out.print(remSt.data+" ");
+                    
+                    //add
+                    if(remQue.left != null){
+                        queue.add(remQue.left);
+                    }
+                    if(remQue.right != null){
+                        queue.add(remQue.right);
+                    }
+                }
+                else{
+                    //if level is add
+                    //rwa
+                    //remove
+                    Node remQue =queue.poll();
+                    
+                    //work
+                    System.out.print(remQue.data+" ");
+                    
+                    //add in both places
+                    if(remQue.left != null){
+                        queue.add(remQue.left);
+                        st.push(remQue.left);
+                    }
+                    if(remQue.right != null){
+                        queue.add(remQue.right);
+                        st.push(remQue.right);
+                    }
+                }
+            }
+        }
+        
+    }
+}
