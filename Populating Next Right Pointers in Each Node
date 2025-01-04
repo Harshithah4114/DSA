@@ -1,0 +1,29 @@
+class Solution {
+    public Node connect(Node root) {
+        Queue<Node>q = new LinkedList<>();
+        if(root == null) return null;
+        q.add(root);
+
+        while(q.size()>0){
+            ArrayList<Node> al = new ArrayList<>();
+            int n = q.size();
+            for(int i = 0; i<n; i++){
+                Node rem = q.remove();
+                al.add(rem);
+                if(rem.left != null){
+                    q.add(rem.left);
+                }
+                if(rem.right != null){
+                    q.add(rem.right);
+                }
+            }
+
+            for(int i = 0; i <= al.size()-2; i++){
+                Node a  = al.get(i);
+                Node b = al.get(i+1);
+                a.next = b;
+            }
+        }
+        return root;
+    }
+}
